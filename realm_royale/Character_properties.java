@@ -15,7 +15,7 @@ public class Character_properties {
         }while(option.equalsIgnoreCase("warrior")==false && option.equalsIgnoreCase("assassin")==false && option.equalsIgnoreCase("hunter")==false && option.equalsIgnoreCase("wizard")==false && option.equalsIgnoreCase("engineer")==false);
 
         Character character = new Character("none", 0, 0, 0,"hand", 0, false, false, false, false);
-        byte inventary[] = new byte[2];
+        byte inventory[] = new byte[2];
 
         if(option.equalsIgnoreCase("warrior")){
 
@@ -84,8 +84,8 @@ public class Character_properties {
         character.use_potions();
         byte character_potions_health = character.potions_health();
         byte character_potions_mana = character.potions_mana();
-        inventary[0] = character_potions_health;
-        inventary[1] = character_potions_mana;
+        inventory[0] = character_potions_health;
+        inventory[1] = character_potions_mana;
 
         int total_protection_w=0;
                 
@@ -379,11 +379,16 @@ public class Character_properties {
 
                 if(object_action.equalsIgnoreCase("hp")){                   //health potion
 
-                    if(inventary[0]>0){
+                    if(inventory[0]>0){
 
-                        inventary[0] -= 1;
+                        inventory[0] -= 1;
                         character_health += 400;
-                        character_action = "You healed yourself\nYour current mana: " + character_mana + ". Your current health: " + character_health;
+                        if(character_health>=(first_health + character_protection)){
+
+                            character_health = (first_health + character_protection);
+
+                        }
+                        character_action = "You healed yourself\nYour current mana: " + character_mana + ". Your current health: " + character_health + ". Health potions left: " + inventory[0];
 
                     }else{
 
@@ -393,11 +398,16 @@ public class Character_properties {
 
                 }else if(object_action.equalsIgnoreCase("mp")){             //mana potion
 
-                    if(inventary[1]>0){
+                    if(inventory[1]>0){
 
-                        inventary[1] -= 1;
+                        inventory[1] -= 1;
                         character_mana += 30;
-                        character_action = "You got more mana\nYour current mana: " + character_mana + ". Your current health: " + character_health;
+                        if(character_mana>=first_mana){
+
+                            character_mana = first_mana;
+
+                        }
+                        character_action = "You got more mana\nYour current mana: " + character_mana + ". Your current health: " + character_health + ". Mana potions left: " + inventory[1];
 
                     }else{
 
@@ -411,7 +421,7 @@ public class Character_properties {
 
                 do{
 
-                    special_action = JOptionPane.showInputDialog("Choose one special attack:\n.Fire - F\n.Ice - I");
+                    special_action = JOptionPane.showInputDialog("Choose one special attack:\n.Fire - F (40 mana)\n.Ice - I (30 mana)");
     
                 }while(special_action.equalsIgnoreCase("f")==false && special_action.equalsIgnoreCase("i")==false); 
 
@@ -469,7 +479,7 @@ public class Character_properties {
 
         }
  
-        Window window = new Window(character.score);
+        Window window = new Window(character_health, character_mana, character.score, total_damage);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 

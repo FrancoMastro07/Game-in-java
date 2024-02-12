@@ -2,6 +2,7 @@ package realm_royale;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -17,7 +18,7 @@ import javax.swing.*;
 
 class Window extends JFrame{
 
-    public Window(int score){
+    public Window(int health, int mana, int score, int damage){
 
         Toolkit mywindow = Toolkit.getDefaultToolkit();
         Dimension window_dimension = mywindow.getScreenSize();
@@ -29,28 +30,53 @@ class Window extends JFrame{
         setLocation(window_width/4, window_height/4);
         setTitle("Realm royale");
         setResizable(true);
-        add(new Sheet(score)); 
+        add(new Sheet(health, mana, score, damage)); 
           
     }
 
     private class Sheet extends JPanel{
     
         private Image image;
-        private String score_str;
+        private JTextField c_properties;
+        JLabel ask_lab;
+        private String properties;
+        private String health;
+        private String mana;
+        private String score;
+        private String damage;
     
-        public Sheet(int score){                        //sheet
+        public Sheet(int health, int mana, int score, int damage){                        //sheet
     
+            this.health="" + health;
+            this.mana="" + mana;
+            this.score="" + score;
+            this.damage="" + damage;
+
+            setLayout(new FlowLayout());
+
             setBackground(Color.GREEN);
 
             Exit_properties exit = new Exit_properties("Exit");
-            
             add(new JButton(exit));
 
-            score_str = "Score: " + score;
+            JLabel properties = new JLabel("Consult Your properties: ");
+            add(properties);
+            
+            c_properties = new JTextField("Ask about: health, mana, score or damage", 30);
+            add(c_properties);
 
-            JButton score_button = new JButton(score_str);
-            score_button.setEnabled(false);
-            add(score_button);
+            JButton ask_prop = new JButton("Ask");
+            Properties_button ask_but = new Properties_button();
+            ask_prop.addActionListener(ask_but);
+            add(ask_prop);
+
+            ask_lab = new JLabel("");
+            add(ask_lab);
+
+            Ask_health ask_h = new Ask_health();
+            Ask_mana ask_m = new Ask_mana();
+            Ask_score ask_s = new Ask_score();
+            Ask_damage ask_d = new Ask_damage();
     
             try{
     
@@ -63,9 +89,19 @@ class Window extends JFrame{
             }
 
             InputMap map = getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
-            map.put(KeyStroke.getKeyStroke("ctrl X"), "exit");
+            map.put(KeyStroke.getKeyStroke("ctrl E"), "exit");
+            map.put(KeyStroke.getKeyStroke("ctrl A"), "ask");
+            map.put(KeyStroke.getKeyStroke("ctrl H"), "ask health");
+            map.put(KeyStroke.getKeyStroke("ctrl M"), "ask mana");
+            map.put(KeyStroke.getKeyStroke("ctrl S"), "ask score");
+            map.put(KeyStroke.getKeyStroke("ctrl D"), "ask damage");
             ActionMap map_action = getActionMap();
             map_action.put("exit", exit);
+            map_action.put("ask", ask_but);
+            map_action.put("ask health", ask_h);
+            map_action.put("ask mana", ask_m);
+            map_action.put("ask score", ask_s);
+            map_action.put("ask damage", ask_d);
     
         }
     
@@ -87,7 +123,7 @@ class Window extends JFrame{
             public Exit_properties(String name){
 
                 putValue(Action.NAME, name);
-                putValue(Action.SHORT_DESCRIPTION, " Press ctrl + x to exit");
+                putValue(Action.SHORT_DESCRIPTION, " Press ctrl + e to exit");
 
             }
 
@@ -95,6 +131,78 @@ class Window extends JFrame{
                 
                 dispose();
                 Toolkit.getDefaultToolkit().beep();
+
+            }
+
+        }
+
+        private class Properties_button extends AbstractAction{
+            
+            public void actionPerformed(ActionEvent e) {
+                
+                properties = c_properties.getText().trim();
+
+                if(properties.equalsIgnoreCase("health")){
+
+                    ask_lab.setText(health);
+
+                }else if(properties.equalsIgnoreCase("mana")){
+
+                    ask_lab.setText(mana);
+
+                }else if(properties.equalsIgnoreCase("score")){
+
+                    ask_lab.setText(score);
+
+                }else if(properties.equalsIgnoreCase("damage")){
+
+                    ask_lab.setText(damage);
+
+                }else{
+
+                    ask_lab.setText("Incorrect command");
+
+                }
+
+            }    
+
+        }
+
+        private class Ask_health extends AbstractAction{
+
+            public void actionPerformed(ActionEvent e) {
+                
+                c_properties.setText("health");
+
+            }
+
+        }
+
+        private class Ask_mana extends AbstractAction{
+
+            public void actionPerformed(ActionEvent e) {
+                
+                c_properties.setText("mana");
+
+            }
+
+        }
+
+        private class Ask_score extends AbstractAction{
+
+            public void actionPerformed(ActionEvent e) {
+                
+                c_properties.setText("score");
+
+            }
+
+        }
+
+        private class Ask_damage extends AbstractAction{
+
+            public void actionPerformed(ActionEvent e){
+
+                c_properties.setText("damage");
 
             }
 
