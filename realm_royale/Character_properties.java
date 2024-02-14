@@ -278,11 +278,7 @@ public class Character_properties {
 
 //-------------------------------action---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        String action;
-
-        String object_action;
-
-        String special_action;
+        String action, object_action, special_action;
 
         String character_action="";
 

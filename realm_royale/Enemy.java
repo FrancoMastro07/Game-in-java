@@ -2,11 +2,7 @@ package realm_royale;
 
 public class Enemy{
 
-    private int damage_e;
-
-    private int health_e;
-
-    private int protection_e;
+    private int damage_e, health_e, protection_e;
 
     private String name_e;
 

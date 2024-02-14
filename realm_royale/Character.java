@@ -2,21 +2,11 @@ package realm_royale;
 
 public class Character extends Armor{
 
-    private String name;
+    private String name, weapon;
 
-    private int health;
+    private int health, protection, mana, damage;
 
-    private int protection;
-
-    private int mana;
-
-    private String weapon;
-
-    private byte potions_health;
-
-    private byte potions_mana;
-
-    private int damage;
+    private byte potions_health, potions_mana;
 
     public byte level;
 
