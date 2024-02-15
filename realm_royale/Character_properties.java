@@ -474,7 +474,7 @@ public class Character_properties {
             }
 
         }
- 
+  
         Window window = new Window(character_health, character_mana, character.score, total_damage);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

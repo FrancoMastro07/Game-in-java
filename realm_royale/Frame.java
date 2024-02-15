@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 //---------------------window------------------------------------------------
 
@@ -36,11 +38,12 @@ class Window extends JFrame{
     }
 
     private class Sheet extends JPanel{
-    
+
         private Image image;
         private JTextField c_properties;
         JLabel ask_lab;
         private String properties, health, mana, score, damage;
+        private JSlider slider;
     
         public Sheet(int health, int mana, int score, int damage){                        //sheet
     
@@ -50,27 +53,26 @@ class Window extends JFrame{
             this.damage="" + damage;
 
             setLayout(new BorderLayout());
-            setBackground(Color.GREEN);
 
-            JPanel sheet_2 = new JPanel(new FlowLayout());                //sheet 2
-            add(sheet_2, BorderLayout.NORTH);
+            JPanel sheet_north = new JPanel(new FlowLayout());                //sheet north
+            add(sheet_north, BorderLayout.NORTH);
 
             Exit_properties exit = new Exit_properties("Exit");
-            sheet_2.add(new JButton(exit));
+            sheet_north.add(new JButton(exit));
 
             JLabel properties = new JLabel("Consult Your properties: ");
-            sheet_2.add(properties);
+            sheet_north.add(properties);
             
             c_properties = new JTextField("Ask about: health, mana, score or damage", 30);
-            sheet_2.add(c_properties);
+            sheet_north.add(c_properties);
 
             JButton ask_prop = new JButton("Ask");
             Properties_button ask_but = new Properties_button();
             ask_prop.addActionListener(ask_but);
-            sheet_2.add(ask_prop);
+            sheet_north.add(ask_prop);
 
             ask_lab = new JLabel("");
-            sheet_2.add(ask_lab);
+            sheet_north.add(ask_lab);
 
             Ask_health ask_h = new Ask_health();
             Ask_mana ask_m = new Ask_mana();
@@ -103,8 +105,8 @@ class Window extends JFrame{
     
             }
 
-            JPanel sheet_3 = new JPanel(new FlowLayout());                //sheet 3
-            add(sheet_3, BorderLayout.SOUTH);
+            JPanel sheet_south = new JPanel(new FlowLayout());                //sheet south
+            add(sheet_south, BorderLayout.SOUTH);
 
             ButtonGroup buttongroup = new ButtonGroup();
             JRadioButton button1 = new JRadioButton("health", false);
@@ -122,10 +124,22 @@ class Window extends JFrame{
             buttongroup.add(button3); 
             buttongroup.add(button4);
 
-            sheet_3.add(button1);
-            sheet_3.add(button2);
-            sheet_3.add(button3);
-            sheet_3.add(button4);
+            sheet_south.add(button1);
+            sheet_south.add(button2);
+            sheet_south.add(button3);
+            sheet_south.add(button4);
+
+            JPanel sheet_west = new JPanel();          //sheet west
+            add(sheet_west, BorderLayout.WEST);
+
+            slider = new JSlider(SwingConstants.VERTICAL, 0, 100, 1); 
+            slider.setMajorTickSpacing(25);  
+            slider.setMinorTickSpacing(0);
+            slider.setPaintTicks(true);
+            slider.setPaintLabels(true);
+            slider.setSnapToTicks(true);
+            slider.addChangeListener(new Slider_Event());
+            sheet_west.add(slider);
 
         }
     
@@ -232,9 +246,41 @@ class Window extends JFrame{
 
         }
 
+        private class Slider_Event implements ChangeListener{
+
+            public void stateChanged(ChangeEvent e) {
+
+                if(slider.getValue()>0 && slider.getValue()<=25){
+
+                    setBackground(Color.GREEN);
+
+                }else if(slider.getValue()>25 && slider.getValue()<=50){
+
+                    setBackground(Color.YELLOW);
+                    
+                }else if(slider.getValue()>50 && slider.getValue()<=75){
+                
+                    setBackground(Color.CYAN);
+
+                }else if(slider.getValue()>75 && slider.getValue()<=100){
+
+                    setBackground(Color.BLUE);
+
+                }else{
+
+                    setBackground(Color.WHITE);
+
+                }
+
+            }
+
+        }
+
     }
 
 }
+
+
 
 
 
