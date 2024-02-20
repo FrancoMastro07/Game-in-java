@@ -44,9 +44,11 @@ class Window extends JFrame{
         JLabel ask_lab;
         private String properties, health, mana, score, damage;
         private JSlider slider;
+        
+        public Sheet(int health, int mana, int score, int damage){                        
     
-        public Sheet(int health, int mana, int score, int damage){                        //sheet
-    
+//---------------------------sheet-center-----------------------------------------------------
+
             this.health="" + health;
             this.mana="" + mana;
             this.score="" + score;
@@ -54,7 +56,35 @@ class Window extends JFrame{
 
             setLayout(new BorderLayout());
 
-            JPanel sheet_north = new JPanel(new FlowLayout());                //sheet north
+            JPopupMenu popup = new JPopupMenu();
+
+            JMenuItem popup_health = new JMenuItem("Health");
+            JMenuItem popup_mana = new JMenuItem("Mana");
+            JMenuItem popup_score = new JMenuItem("Score");
+            JMenuItem popup_damage = new JMenuItem("Damage");
+            JMenuItem popup_ask = new JMenuItem("Ask");
+            JMenuItem popup_exit = new JMenuItem("Exit");
+
+            popup_health.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_DOWN_MASK));
+            popup_mana.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.CTRL_DOWN_MASK));
+            popup_score.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
+            popup_damage.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.CTRL_DOWN_MASK));
+            popup_ask.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
+            popup_exit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_DOWN_MASK));
+
+            popup.add(popup_health);
+            popup.add(popup_mana);
+            popup.add(popup_score);
+            popup.add(popup_damage);
+            popup.addSeparator();
+            popup.add(popup_ask);
+            popup.add(popup_exit);
+
+            setComponentPopupMenu(popup);
+
+//--------------------------sheet-north---------------------------------------------------------------
+
+            JPanel sheet_north = new JPanel(new FlowLayout());                
             add(sheet_north, BorderLayout.NORTH);
 
             Exit_properties exit = new Exit_properties("Exit");
@@ -105,7 +135,9 @@ class Window extends JFrame{
     
             }
 
-            JPanel sheet_south = new JPanel(new FlowLayout());                //sheet south
+//--------------------------------sheet-south-----------------------------------------------------------
+
+            JPanel sheet_south = new JPanel(new FlowLayout());                
             add(sheet_south, BorderLayout.SOUTH);
 
             ButtonGroup buttongroup = new ButtonGroup();
@@ -129,7 +161,9 @@ class Window extends JFrame{
             sheet_south.add(button3);
             sheet_south.add(button4);
 
-            JPanel sheet_west = new JPanel();          //sheet west
+//-------------------------------sheet-west-------------------------------------------------------
+
+            JPanel sheet_west = new JPanel();          
             add(sheet_west, BorderLayout.WEST);
 
             slider = new JSlider(SwingConstants.VERTICAL, 0, 100, 1); 
@@ -143,7 +177,9 @@ class Window extends JFrame{
 
         }
     
-        public void paintComponent(Graphics g){            //writing, font and image
+//----------------------------writing-zone----------------------------------------------------------
+
+        public void paintComponent(Graphics g){            
     
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
@@ -151,12 +187,14 @@ class Window extends JFrame{
             Font change_font = new Font("Arial", Font.BOLD, 40);
             g2.setFont(change_font);
             g2.drawString("Congratulations", 100, 100);
-            g2.drawString("You defeated the enemy", 100, 200);
+            g2.drawString("You finished the game", 100, 200);
             g2.drawImage(image, 400, 0, null);
     
         }
 
-        private class Exit_properties extends AbstractAction{          //actions------
+//-----------------------------actions-----------------------------------------------------------------------------------------------------------------
+
+        private class Exit_properties extends AbstractAction{          
 
             public Exit_properties(String name){
 
@@ -279,11 +317,3 @@ class Window extends JFrame{
     }
 
 }
-
-
-
-
-
-
-
-

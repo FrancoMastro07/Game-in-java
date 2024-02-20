@@ -106,15 +106,15 @@ public class Enemy{
 
         if(random_num>0 && random_num<=60){
 
-            return 1;                          //attack
+            return 1;                          
 
         }else if(random_num<=80){
 
-            return 2;                          //ultraattack
+            return 2;                          
 
         }else{
 
-            return 3;                          //heal
+            return 3;                          
 
         }
 

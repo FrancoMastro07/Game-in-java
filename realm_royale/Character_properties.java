@@ -1,5 +1,8 @@
 package realm_royale;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class Character_properties {
@@ -474,10 +477,10 @@ public class Character_properties {
             }
 
         }
-  
+ 
         Window window = new Window(character_health, character_mana, character.score, total_damage);
         window.setVisible(true);
-        window.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         System.out.println(".........................................................................................................");
         System.out.println("Congratulations, you defeated " + enemy_name + "\nYou made " + total_damage + " of damage and your score is " + character.score + " points");
