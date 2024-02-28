@@ -17,11 +17,28 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+/* 
+public class Frame{
+
+    public static void main(String[] args) {
+        
+        Window window = new Window(1, 2, 3, 4, 1);
+        Window window2 = new Window(123, 2);
+        window.setVisible(true);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window2.setVisible(true);
+        window2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }
+
+}
+*/
+
 //---------------------window------------------------------------------------
 
 class Window extends JFrame{
 
-    public Window(int health, int mana, int score, int damage){
+    public Window(int health, int mana, int score, int damage, int pick){
 
         Toolkit mywindow = Toolkit.getDefaultToolkit();
         Dimension window_dimension = mywindow.getScreenSize();
@@ -32,9 +49,23 @@ class Window extends JFrame{
         setSize(window_width/2, window_height/2);
         setLocation(window_width/4, window_height/4);
         setTitle("Realm royale");
-        setResizable(true);
-        add(new Sheet(health, mana, score, damage)); 
+        add(new Sheet(health, mana, score, damage, pick)); 
           
+    }
+
+    public Window(int score, int pick){
+
+        Toolkit mywindow = Toolkit.getDefaultToolkit();
+        Dimension window_dimension = mywindow.getScreenSize();
+
+        int window_height = window_dimension.height;
+        int window_width = window_dimension.width;
+
+        setSize(window_width/2, window_height/2);
+        setLocation(window_width/4, window_height/4);
+        setTitle("Realm royale");
+        add(new Sheet(score, pick));
+
     }
 
     private class Sheet extends JPanel{
@@ -44,8 +75,9 @@ class Window extends JFrame{
         JLabel ask_lab;
         private String properties, health, mana, score, damage;
         private JSlider slider;
-        
-        public Sheet(int health, int mana, int score, int damage){                        
+        private int pick;
+
+        public Sheet(int health, int mana, int score, int damage, int pick){                        
     
 //---------------------------sheet-center-----------------------------------------------------
 
@@ -53,6 +85,7 @@ class Window extends JFrame{
             this.mana="" + mana;
             this.score="" + score;
             this.damage="" + damage;
+            this.pick=pick;
 
             setLayout(new BorderLayout());
 
@@ -176,6 +209,28 @@ class Window extends JFrame{
             sheet_west.add(slider);
 
         }
+
+//---------------------------second-constructor-------------------------------------------------------
+
+        public Sheet(int score, int pick){
+
+            this.score="" + score;
+            this.pick=pick;
+
+            setBackground(Color.RED);
+            setLayout(null);
+
+            try{
+    
+                image = ImageIO.read(new File("realm_royale/skull.png"));
+    
+            }catch(IOException e){
+    
+                System.out.println("Couldnt find the image");
+    
+            }
+
+        }
     
 //----------------------------writing-zone----------------------------------------------------------
 
@@ -186,8 +241,20 @@ class Window extends JFrame{
     
             Font change_font = new Font("Arial", Font.BOLD, 40);
             g2.setFont(change_font);
-            g2.drawString("Congratulations", 100, 100);
-            g2.drawString("You finished the game", 100, 200);
+
+            if(pick==1){
+
+                g2.drawString("Congratulations", 100, 100);
+                g2.drawString("You finished the game", 100, 200);
+
+            }else{
+
+                g2.drawString("WTF BRO!!!", 100, 100);
+                g2.drawString("You were defeated", 100, 200);
+                g2.drawString("Score: " + score, 100, 300);
+
+            }
+            
             g2.drawImage(image, 400, 0, null);
     
         }

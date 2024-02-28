@@ -345,6 +345,12 @@ public class Character_properties {
 
             }else{
 
+                Window window = new Window(character.score, 2);
+                window.setVisible(true);
+                window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+                JOptionPane.showMessageDialog(null, "You were defeated!!!", "WTF!!!", 2);
+
                 System.out.println("You were defeated");
                 System.out.println(".........................................................................................................");
                 System.exit(0);
@@ -477,11 +483,9 @@ public class Character_properties {
             }
 
         }
- 
-        Window window = new Window(character_health, character_mana, character.score, total_damage);
-        window.setVisible(true);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+/* 
+        
+*/ 
         System.out.println(".........................................................................................................");
         System.out.println("Congratulations, you defeated " + enemy_name + "\nYou made " + total_damage + " of damage and your score is " + character.score + " points");
         System.out.println(".........................................................................................................");
@@ -504,6 +508,10 @@ public class Character_properties {
         System.out.println("Health: " + character_health + "\nProtection: " + character_protection + "\nMana: " + character_mana + "\nDamage: " + character_damage);
 
         character_health += character_protection;
+
+        Window window = new Window(character_health, character_mana, character.score, total_damage, 1);
+        window.setVisible(true);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
     
