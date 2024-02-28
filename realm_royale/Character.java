@@ -181,21 +181,21 @@ public class Character extends Armor{
             health += 600;
             protection += 400;
             mana += 60;
-            damage += 200;
+            damage += 300;
 
         }else if(level==4){
 
             health += 700;
             protection += 500;
             mana += 70;
-            damage += 300;
+            damage += 400;
 
         }else if(level==5){
 
             health += 800;
             protection += 600;
             mana += 80;
-            damage += 400;
+            damage += 500;
 
         }
 
