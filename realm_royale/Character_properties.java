@@ -1,10 +1,12 @@
 package realm_royale;
 
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class Character_properties {
     
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException{
 
         String option="";
 
@@ -1682,6 +1684,9 @@ public class Character_properties {
         Window window = new Window(character_health, character_mana, character.score, total_damage, 1);
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Writing_file file = new Writing_file(character_name, character_weapon, character_health, character_mana, character_damage, character.score);
+        file.writing();
 
     }
     
