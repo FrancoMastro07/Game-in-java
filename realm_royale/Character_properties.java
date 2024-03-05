@@ -1685,7 +1685,7 @@ public class Character_properties {
         window.setVisible(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        Writing_file file = new Writing_file(character_name, character_weapon, character_health, character_mana, character_damage, character.score);
+        Writing_file file = new Writing_file(character_name, character_weapon, character_health, character_mana, total_damage, character.score);
         file.writing();
 
     }
