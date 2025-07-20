@@ -1,4 +1,7 @@
-package realm_royale;
+import interfaces.Chest;
+import interfaces.Greaves;
+import interfaces.Hands;
+import interfaces.Helmet;
 
 public class Armor implements Helmet, Chest, Hands, Greaves{
 

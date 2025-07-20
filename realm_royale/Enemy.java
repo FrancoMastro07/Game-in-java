@@ -1,5 +1,3 @@
-package realm_royale;
-
 public class Enemy{
 
     private int damage_e, health_e, protection_e;

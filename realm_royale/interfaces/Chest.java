@@ -1,4 +1,4 @@
-package realm_royale;
+package interfaces;
 
 public interface Chest {
 

@@ -1,11 +1,9 @@
-package realm_royale;
-
 import java.io.IOException;
-
 import javax.swing.*;
 
-public class Character_properties {
+public class Main {
     
+
     public static void main(String[] args) throws IOException{
 
         String option="";
@@ -21,43 +19,23 @@ public class Character_properties {
 
         if(option.equalsIgnoreCase("warrior")){
 
-            character.change_name_character("Warrior");
-            character.change_health_character(3500);
-            character.change_mana(80);
-            character.change_weapon("Sword");
-            character.change_damage(320);
-
+            Actions.character_changes(character, "Warrior", 3500, 80, "Sword", 320);
+        
         }else if(option.equalsIgnoreCase("assassin")){
 
-            character.change_name_character("Assassin");
-            character.change_health_character(2900);
-            character.change_mana(70);
-            character.change_weapon("Sniper");
-            character.change_damage(250);
+            Actions.character_changes(character, "Assassin", 2900, 70, "Sniper", 250);
 
         }else if(option.equalsIgnoreCase("hunter")){
 
-            character.change_name_character("Hunter");
-            character.change_health_character(2800);
-            character.change_mana(100);
-            character.change_weapon("Arch");
-            character.change_damage(210);
+            Actions.character_changes(character, "Hunter", 2800, 100, "Arch", 210);
 
         }else if(option.equalsIgnoreCase("wizard")){
 
-            character.change_name_character("Wizard");
-            character.change_health_character(2700);
-            character.change_mana(150);
-            character.change_weapon("Cane");
-            character.change_damage(190);
+            Actions.character_changes(character, "Wizard", 2700, 150, "Cane", 190);
 
         }else if(option.equalsIgnoreCase("engineer")){
 
-            character.change_name_character("Engineer");
-            character.change_health_character(3300);
-            character.change_mana(90);
-            character.change_weapon("Rocket launcher");
-            character.change_damage(270);
+           Actions.character_changes(character, "Engineer", 3300, 90, "Rocket launcher", 270);
 
         }
         
@@ -91,145 +69,23 @@ public class Character_properties {
 
         int total_protection_w=0;
                 
-//-----------------------------------helmet-character-------------------------------------------------------------------------------
+//-----------------------------------armor-character-------------------------------------------------------------------------------
 
         byte helmet_armor_w = (byte) character.use_helmet();
-
-        if(helmet_armor_w==Helmet.common_helmet){
-
-            System.out.println("-You have a common helmet that has " + helmet_armor_w + " of protection");
-            total_protection_w += helmet_armor_w;
-
-        }else if(helmet_armor_w==Helmet.rare_helmet){
-
-            System.out.println("-You have a rare helmet that has " + helmet_armor_w + " of protection");
-            total_protection_w += helmet_armor_w;
-
-        }else if(helmet_armor_w==Helmet.ultrarare_helmet){
-
-            System.out.println("-You have an ultrarare helmet that has " + helmet_armor_w + " of protection");
-            total_protection_w += helmet_armor_w;
-
-        }else if(helmet_armor_w==Helmet.epic_helmet){
-
-            System.out.println("-You have an epic helmet that has " + helmet_armor_w + " of protection");
-            total_protection_w += helmet_armor_w;
-
-        }else if(helmet_armor_w==Helmet.legendary_helmet){
-
-            System.out.println("-You have a legendary helmet that has " + helmet_armor_w + " of protection");
-            total_protection_w += helmet_armor_w;
-
-        }else{
-
-            System.out.println("You dont have a helmet");
-
-        }
-
-//-----------------------------------chest-character-------------------------------------------------------------------------------
-
         byte chest_armor_w = (byte) character.use_chest();
-
-        if(chest_armor_w==Chest.common_chest){
-
-            System.out.println("-You have a common chest that has " + chest_armor_w + " of protection");
-            total_protection_w += chest_armor_w;
-
-        }else if(chest_armor_w==Chest.rare_chest){
-
-            System.out.println("-You have a rare chest that has " + chest_armor_w + " of protection");
-            total_protection_w += chest_armor_w;
-
-        }else if(chest_armor_w==Chest.ultrarare_chest){
-
-            System.out.println("-You have an ultrarare chest that has " + chest_armor_w + " of protection");
-            total_protection_w += chest_armor_w;
-
-        }else if(chest_armor_w==Chest.epic_chest){
-
-            System.out.println("-You have an epic chest that has " + chest_armor_w + " of protection");
-            total_protection_w += chest_armor_w;
-
-        }else if(chest_armor_w==Chest.legendary_chest){
-
-            System.out.println("-You have a legendary chest that has " + chest_armor_w + " of protection");
-            total_protection_w += chest_armor_w;
-
-        }else{
-
-            System.out.println("You dont have a chest");
-
-        }
-
-//-----------------------------------hands-character-------------------------------------------------------------------------------
-
         byte hands_armor_w = (byte) character.use_hands();
-
-        if(hands_armor_w==Hands.common_hands){
-
-            System.out.println("-You have a common hands that have " + hands_armor_w + " of protection");
-            total_protection_w += hands_armor_w;
-
-        }else if(hands_armor_w==Hands.rare_hands){
-
-            System.out.println("-You have a rare hands that have " + hands_armor_w + " of protection");
-            total_protection_w += hands_armor_w;
-
-        }else if(hands_armor_w==Hands.ultrarare_hands){
-
-            System.out.println("-You have an ultrarare hands that have " + hands_armor_w + " of protection");
-            total_protection_w += hands_armor_w;
-
-        }else if(hands_armor_w==Hands.epic_hands){
-
-            System.out.println("-You have an epic hands that have " + hands_armor_w + " of protection");
-            total_protection_w += hands_armor_w;
-
-        }else if(hands_armor_w==Hands.legendary_hands){
-
-            System.out.println("-You have a legendary hands that have " + hands_armor_w + " of protection");
-            total_protection_w += hands_armor_w;
-
-        }else{
-
-            System.out.println("You dont have hands");
-
-        }
-
-//-----------------------------------greaves-character-------------------------------------------------------------------------------
-
         byte greaves_armor_w = (byte) character.use_greaves();
 
-        if(greaves_armor_w==Greaves.common_greaves){
+        Actions.box_helmet(helmet_armor_w);
+        Actions.box_chest(chest_armor_w);
+        Actions.box_hands(hands_armor_w);
+        Actions.box_greaves(greaves_armor_w);
 
-            System.out.println("-You have a common greaves that have " + greaves_armor_w + " of protection");
-            total_protection_w += greaves_armor_w;
-
-        }else if(greaves_armor_w==Greaves.rare_greaves){
-
-            System.out.println("-You have a rare greaves that have " + greaves_armor_w + " of protection");
-            total_protection_w += greaves_armor_w;
-
-        }else if(greaves_armor_w==Greaves.ultrarare_greaves){
-
-            System.out.println("-You have an ultrarare greaves that have " + greaves_armor_w + " of protection");
-            total_protection_w += greaves_armor_w;
-
-        }else if(greaves_armor_w==Greaves.epic_greaves){
-
-            System.out.println("-You have an epic greaves that have " + greaves_armor_w + " of protection");
-            total_protection_w += greaves_armor_w;
-
-        }else if(greaves_armor_w==Greaves.legendary_greaves){
-
-            System.out.println("-You have a legendary greaves that have " + greaves_armor_w + " of protection");
-            total_protection_w += greaves_armor_w;
-
-        }else{
-
-            System.out.println("You dont have greaves");
-
-        }
+        total_protection_w += helmet_armor_w;
+        total_protection_w += chest_armor_w;
+        total_protection_w += hands_armor_w;
+        total_protection_w += greaves_armor_w;
+    
         
         character.change_protection_character(total_protection_w);
         int character_protection = character.protection_character();
@@ -241,6 +97,8 @@ public class Character_properties {
         System.out.println(".You have " + character_potions_mana + " potions of mana");
         System.out.println(".........................................................................");
 
+//-------------------------------------------enemy----------------------------------------------------------------//
+
         JOptionPane.showMessageDialog(null, "There is an enemy in front of you");        
 
         Enemy enemy = new Enemy("none", 0, 0, 0);
@@ -249,24 +107,15 @@ public class Character_properties {
 
         if(random_enemy==1){
 
-            enemy.change_name_enemy("Ant");
-            enemy.change_damage_enemy(125);
-            enemy.change_health_enemy(250);
-            enemy.change_protection_enemy(70);
+            Actions.enemy_changes(enemy, "Ant", 125, 250, 70);
 
         }else if(random_enemy==2){
 
-            enemy.change_name_enemy("Bot");
-            enemy.change_damage_enemy(260);
-            enemy.change_health_enemy(1000);
-            enemy.change_protection_enemy(250);
+            Actions.enemy_changes(enemy, "Bot", 260, 1000, 250);
 
         }else{
 
-            enemy.change_name_enemy("Necromancer");
-            enemy.change_damage_enemy(300);
-            enemy.change_health_enemy(2500);
-            enemy.change_protection_enemy(300);
+            Actions.enemy_changes(enemy, "Necromancer", 300, 2500, 300);
 
         }   
 
@@ -513,24 +362,15 @@ public class Character_properties {
 
         if(random_enemy==1){
 
-            enemy.change_name_enemy("Wolf");
-            enemy.change_damage_enemy(315);
-            enemy.change_health_enemy(620);
-            enemy.change_protection_enemy(120);
+            Actions.enemy_changes(enemy, "Wolf", 315, 620, 120);
 
         }else if(random_enemy==2){
 
-            enemy.change_name_enemy("Cyborg");
-            enemy.change_damage_enemy(420);
-            enemy.change_health_enemy(1390);
-            enemy.change_protection_enemy(270);
+            Actions.enemy_changes(enemy, "Cyborg", 420, 1390, 270);
 
         }else{
 
-            enemy.change_name_enemy("Ogre");
-            enemy.change_damage_enemy(480);
-            enemy.change_health_enemy(2880);
-            enemy.change_protection_enemy(380);
+            Actions.enemy_changes(enemy, "Ogre", 480, 2880, 380);
 
         }    
 
@@ -799,24 +639,15 @@ public class Character_properties {
 
         if(random_enemy==1){
 
-            enemy.change_name_enemy("Bear");
-            enemy.change_damage_enemy(595);
-            enemy.change_health_enemy(1220);
-            enemy.change_protection_enemy(500);
+            Actions.enemy_changes(enemy, "Bear", 595, 1220, 500);
 
         }else if(random_enemy==2){
 
-            enemy.change_name_enemy("Gargoyle");
-            enemy.change_damage_enemy(660);
-            enemy.change_health_enemy(1900);
-            enemy.change_protection_enemy(720);
-
+            Actions.enemy_changes(enemy, "Gargoyle", 660, 1900, 720);
+            
         }else{
 
-            enemy.change_name_enemy("Cerberus");
-            enemy.change_damage_enemy(720);
-            enemy.change_health_enemy(2400);
-            enemy.change_protection_enemy(800);
+            Actions.enemy_changes(enemy, "Cerberus", 720, 2400, 800);
 
         }    
 
@@ -1101,25 +932,16 @@ public class Character_properties {
 
         if(random_enemy==1){
 
-            enemy.change_name_enemy("Lion");
-            enemy.change_damage_enemy(925);
-            enemy.change_health_enemy(1670);
-            enemy.change_protection_enemy(800);
+            Actions.enemy_changes(enemy, "Lion", 925, 1670, 800);
 
         }else if(random_enemy==2){
 
-            enemy.change_name_enemy("Golem");
-            enemy.change_damage_enemy(1030);
-            enemy.change_health_enemy(2390);
-            enemy.change_protection_enemy(1000);
-
+            Actions.enemy_changes(enemy, "Golem", 1030, 2390, 1000);
+            
         }else{
 
-            enemy.change_name_enemy("Leviatan");
-            enemy.change_damage_enemy(1080);
-            enemy.change_health_enemy(3800);
-            enemy.change_protection_enemy(1100);
-
+            Actions.enemy_changes(enemy, "Leviatan", 1080, 3800, 1100);
+            
         }    
 
         enemy_name = enemy.name_enemy();
@@ -1416,10 +1238,7 @@ public class Character_properties {
         JOptionPane.showMessageDialog(null, "Something is weird...", "...", 2);
         System.out.println(".........................................................................................................");
 
-        enemy.change_name_enemy("Cthulhu");
-        enemy.change_damage_enemy(1400);
-        enemy.change_health_enemy(6000);
-        enemy.change_protection_enemy(1500);
+        Actions.enemy_changes(enemy, "Cthulhu", 1400, 6000, 1500);
 
         enemy_name = enemy.name_enemy();
         enemy_health = enemy.health_enemy() + enemy.protection_enemy();
