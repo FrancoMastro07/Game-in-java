@@ -158,7 +158,7 @@ class Window extends JFrame{
 
             try{
     
-                image = ImageIO.read(new File("realm_royale/chicken.png"));
+                image = ImageIO.read(new File("realm_royale/images/chicken.png"));
     
             }catch(IOException e){
     
@@ -220,7 +220,7 @@ class Window extends JFrame{
 
             try{
     
-                image = ImageIO.read(new File("realm_royale/skull.png"));
+                image = ImageIO.read(new File("realm_royale/images/skull.png"));
     
             }catch(IOException e){
     

@@ -1,10 +1,8 @@
 public class Character extends Armor{
 
     private String name, weapon;
-    private int health, protection, mana, damage;
-    private byte potions_health, potions_mana;
-    public byte level;
-    public int score;
+    private int health, protection, mana, damage, score;
+    private byte potions_health, potions_mana, level;
 
     public Character(String name, int health, int protection, int mana, String weapon, int damage, boolean helmet, boolean chest, boolean hands, boolean greaves){
 
@@ -195,12 +193,20 @@ public class Character extends Armor{
 
     }
 
+    public byte level(){
+        return level;
+    }
+
 //-----------------scores-------------------------------------------
 
     public void scores(int score){
 
         this.score += score;
 
+    }
+
+    public int score(){
+        return score;
     }
 
 }
